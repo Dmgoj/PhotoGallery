@@ -13,8 +13,6 @@ class RegisterController extends RegisterModel{
         $this->confirm_password=trim($confirm_password);
     }
 
-
-
     // Check if registration fields are empty
     private function emptyInput(){
         $result;
@@ -99,15 +97,7 @@ class RegisterController extends RegisterModel{
     
             // If error checks above are passed insert user
             $this->setUser($this->username,$this->email,$this->password);
-                            
-                                               
-    
         }
-   
-
-
-
-
 }
 
 ?>

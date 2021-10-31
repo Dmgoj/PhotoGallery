@@ -5,13 +5,23 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
-    <nav>
+        <?php if(!isset($_SESSION['user'])){ ?>
+            <nav>
         <ul style="display:inline; list-style-type: none; ">
             <li><a href="../index.php">Home</a></li>
             <li><a href="login.view.php">Login</a></li>
-            <li><a href="logout.php">Logout</a></li>
+            <li><a href="register.view.php">Register</a></li>
         </ul>
-    </nav>
+        </nav>
+        <?php }elseif(isset($_SESSION['user'])){?>
+            <nav>
+            <ul style="display:inline; list-style-type: none; ">
+            <!--<li><a href="../index.php">Home</a></li-->
+            <li><a href="../index.php"><?= $_SESSION['user']; ?></a></li>
+            <li><a href="logout.php">Logout</a></li>
+            </ul>
+            </nav>
+        <?php } ?>
     <br>
     <form action="../login.php" method="post">
         LOGIN:

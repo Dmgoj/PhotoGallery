@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,13 +8,30 @@
     <title>Home</title>
 </head>
 <body>
-    <nav>
+<?php if(!isset($_SESSION['user'])){ ?>
+            <nav>
+        <ul style="display:inline; list-style-type: none; ">
+            <li><a href="../index.php">Home</a></li>
+            <li><a href="views/login.view.php">Login</a></li>
+            <li><a href="views/register.view.php">Register</a></li>
+        </ul>
+        </nav>
+        <?php }elseif(isset($_SESSION['user'])){?>
+            <nav>
+            <ul style="display:inline; list-style-type: none; ">
+            <!--<li><a href="../index.php">Home</a></li-->
+            <li><a href="../index.php"><?= $_SESSION['user']; ?></a></li>
+            <li><a href="logout.php">Logout</a></li>
+            </ul>
+            </nav>
+        <?php } ?>
+    <!--nav>
         <ul style="display:inline; list-style-type: none; ">
             <li><a href="../index.php">Home</a></li>
             <li><a href="views/login.view.php">Login</a></li>
             <li><a href="logout.php">Logout</a></li>
         </ul>
-    </nav>
+    </nav-->
     <br>
 
     <form action="index.php">
