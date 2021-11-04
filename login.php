@@ -11,9 +11,15 @@ if(isset($_POST['submit'])){
     include "Controllers/Login.Controller.php";
     $login=new LoginController( $username, $password);
 
+    // Setting cookies if remember me is checked
+    $login->rememberMe();
+
     // Register Error handling i user registration
     $login->loginUser();
-
+    
+    
+    
+    
     // Sendig user to the "Home"
     header("Location:index.php?error=noerrors");
 }

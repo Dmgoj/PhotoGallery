@@ -1,3 +1,4 @@
+<?php session_start() ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -25,9 +26,12 @@
     <br>
     <form action="../login.php" method="post">
         LOGIN:
-        <input type="text" name="username" placeholder="Username">
-        <input type="password" name="password" placeholder="Password">
+        <input type="text" name="username" placeholder="Username" value=<?= $_COOKIE['username']; ?>>
+        <input type="password" name="password" placeholder="Password"  value=<?= $_COOKIE['password']; ?>>
+        <input type="checkbox" name="remember">
+        Remember me
         <button  type="submit" name="submit">Login</button>
+
         <a href="register.view.php">Register</a>
     </form>
 </head>

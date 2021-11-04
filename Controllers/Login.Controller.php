@@ -4,11 +4,9 @@ class LoginController extends LoginModel{
     private $username;
     private $password;
     
-
     public function __construct($username,$password){
         $this->username=trim($username);
         $this->password=trim($password);
-        
     }
 
     public function loginUser(){
@@ -28,6 +26,18 @@ class LoginController extends LoginModel{
             $result=true;
         }
         return $result;
+    }
+    
+    // Check if "Remember me" checkbox is checked and set cookies 
+    public function rememberMe(){
+        if(isset($_POST['remember'])){
+            $username=$this->username;
+            $password=$this->password;
+            
+            $time=time() + 3600 * 24 * 30;
+            setcookie('username', $username, $time);
+            setcookie('password', $password, $time);
+        }
     }
 
      

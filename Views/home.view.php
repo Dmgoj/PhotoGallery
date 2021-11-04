@@ -1,4 +1,4 @@
-
+<?php //session_start() ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -21,6 +21,7 @@
             <ul style="display:inline; list-style-type: none; ">
             <!--<li><a href="../index.php">Home</a></li-->
             <li><a href="../index.php"><?= $_SESSION['user']; ?></a></li>
+            <li><a href="views/management.view.php">Management</a></li>
             <li><a href="logout.php">Logout</a></li>
             </ul>
             </nav>
