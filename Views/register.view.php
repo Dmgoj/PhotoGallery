@@ -7,11 +7,11 @@
     <title>Register</title>
 </head>
 <body>
-<nav>
+    <nav>
         <ul style="display:inline; list-style-type: none; ">
             <li><a href="../index.php">Home</a></li>
             <li><a href="login.view.php">Login</a></li>
-            <li><a href="logout.php">Logout</a></li>
+            <li><a href="../logout.php">Logout</a></li>
         </ul>
     </nav>
     <br>
@@ -22,7 +22,6 @@
         <input type="password" name="password" placeholder="Password">
         <input type="password" name="confirm_password" placeholder="Confirm Password">
         <input type="submit" name="submit" value="Submit">
-       
     </form>
 </body>
 </html>

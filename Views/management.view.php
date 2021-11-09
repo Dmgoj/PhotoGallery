@@ -1,8 +1,10 @@
-<?php 
+<?php
+
 session_start();
-if(!isset($_SESSION['user'])){
-header("Location:home.view.php");
+if (!isset($_SESSION['user'])) {
+    header("Location:home.view.php");
 }
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -19,9 +21,9 @@ header("Location:home.view.php");
             <li><a href="logout.php">Logout</a></li>
         </ul>
     </nav>
-
     <form action="../management.php" method="post" enctype="multipart/form-data">
         <input type="file" id="image" name="image">
+        <!-- <input type="hidden" name="MAX_FILE_SIZE" value="30000" /-->
         <input type="submit" name="submit" value="Upload">
     </form>
 </body>
