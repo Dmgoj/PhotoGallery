@@ -12,8 +12,8 @@
     <nav>
         <ul style="display:inline; list-style-type: none;">
             <li><a href="../index.php">Home</a></li>
-            <li><a href="views/login.view.php">Login</a></li>
-            <li><a href="views/register.view.php">Register</a></li>
+            <li><a href="/views/login.view.php">Login</a></li>
+            <li><a href="/views/register.view.php">Register</a></li>
         </ul>
     </nav>
 <?php } elseif (isset($_SESSION['user'])) {?>
@@ -21,7 +21,7 @@
         <ul style="display:inline; list-style-type: none; ">
             <!--<li><a href="../index.php">Home</a></li-->
             <li><a href="../index.php"><?= $_SESSION['user']; ?></a></li>
-            <li><a href="views/management.view.php">Management</a></li>
+            <li><a href="views/management.view.php?user=<?php echo $_SESSION['user']?>">Management</a></li>
             <li><a href="logout.php">Logout</a></li>
         </ul>
     </nav>

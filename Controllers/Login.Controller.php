@@ -35,7 +35,7 @@ class LoginController extends LoginModel
     // Check if "Remember me" checkbox is checked and set cookies 
     public function rememberMe()
     {
-        if (isset($_POST['remember'])) {
+        if ($_POST['remember']) {
             $username=$this->username;
             $password=$this->password;
             $time=time() + 3600 * 24 * 30;

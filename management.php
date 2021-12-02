@@ -1,6 +1,9 @@
 <?php
-
+session_start();
+// Get data from the file upload
 if (isset($_POST['submit'])) {
+    
+
     $image = $_FILES['image'];
     $img_name = $_FILES['image']['name'];
     $img_type = $_FILES['image']['type'];
@@ -17,11 +20,29 @@ if (isset($_POST['submit'])) {
     $new_img_name = uniqid() . "." . $file_actual_extension;
     $img_destination = 'uploads/' . $new_img_name;
     move_uploaded_file($img_tmp_name, $img_destination);
-    /*
-    include "Database.php";
-    include "Controllers/Management.Controller.php";
-    
 
-    
-    */
+
+    // Get username which uploaded image
+    if (isset($_SESSION['user']) && !empty($_SESSION['user'])) {
+    $username = $_SESSION['user'];
+    }
+
+    // Management Controller object
+    include "Database.php";
+    include "Models/Management.Model.php";
+    include "Controllers/Management.Controller.php";
+    $management = new ManagementController($img_destination, $username);
+        
+    $management->uploadImagePath();
+}
+
+if (isset($_SESSION['user'])) {
+// Show images
+ // Management Controller object
+ include "Database.php";
+ include "Models/Management.Model.php";
+ include "Controllers/Management.Controller.php";
+ $images = new ManagementController($img_destination, $username);
+ $images->showImage();
+ $imagestoshow= $images->showImages();
 }

@@ -30,7 +30,7 @@ class LoginModel extends Database
             header("Location:views.login.php?error =usernotfound");
             exit();
         }
-        $user = $stmt->fetchAll(PDO::FETCH_ASSOC);    
+        $user = $stmt->fetchAll(PDO::FETCH_ASSOC); 
         session_start();
         $_SESSION['user'] = $user[0]['username'];
         }
