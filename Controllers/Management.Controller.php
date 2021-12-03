@@ -12,24 +12,16 @@ class ManagementController extends ManagementModel
         $this->username=$username;
     }
 
+    // Upload image path do database
     public function uploadImagePath()
     {
         $this->setImagePath($this->img_destination, $this->username);
     }
-
-    public function showImages()
-    {
-        return $this->getImages();
-        
-        //var_dump($this->getImages());
-        //die();
-    }
-
+   
+    // Get image path and username that uploaded image from database
     public function showUsers()
     {
-        return $this->getUploaderNames(); 
+        return $this->getUploadInfo(); 
         
     }
-
-
 }

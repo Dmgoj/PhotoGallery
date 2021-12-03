@@ -9,8 +9,8 @@ require_once "../Models/Management.Model.php";
 require_once "../Controllers/Management.Controller.php";
 
 $images=new ManagementController(null, null);
-$imagestoshow= $images->showImages();
-$users= $images->showUsers();
+$users_and_images= $images->showUsers();
+
 //var_dump($users);
 //die();
 
@@ -36,8 +36,9 @@ $users= $images->showUsers();
         <input type="submit" name="submit" value="Upload">
     </form>
     <table>
-        <?php foreach ($imagestoshow as $img) {
-               echo "<tr><td> <img src='../" . $img['image'] . "' alt='PICTURE' width='100' height='100'><button>REMOVE</button><br>" . $users['username'] ."</td></tr>";
+        <?php 
+        foreach ($users_and_images as $img) {
+               echo "<tr><td> <img src='../" . $img['image'] . "' alt='PICTURE' width='100' height='100'><button>REMOVE</button><br>" . $img['username'] ."</td></tr>";
         }?>
     </table>
 </body>
