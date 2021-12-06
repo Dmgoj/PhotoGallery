@@ -12,22 +12,27 @@ class ManagementModel extends Database
         $stmt->execute(array($img_destination, $user_id['id']));
     }
 
-    public function getImages()
+    protected function getImages()
     {
         $stmt=$this->connect()->query("SELECT image  FROM `images`");
         $stmt->execute();
         $images=$stmt->fetchAll(PDO::FETCH_ASSOC);
         return $images;
-        
     }
     
-    public function getUploadInfo() 
+    protected function getUploadInfo() 
     {
         $stmt=$this->connect()->query("SELECT * FROM users,images WHERE images.user_id=users.id");
         $stmt->execute();
         $names=$stmt->fetchAll(PDO::FETCH_ASSOC);
         return $names;
-        
+    }
+
+    protected function deleteImage($img_path)
+    {
+        $stmt=$this->connect()->query("DELETE FROM images WHERE image='$img_path'");
+        $stmt->execute();
+        header("Location:/views/management.view.php");
     }
 }
 
