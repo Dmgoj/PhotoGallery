@@ -46,7 +46,7 @@ if (isset($_SESSION['user'])) {
 
 if (isset($_POST['remove'])) {
     $img_path= $_POST['image_to_delete'];
-    
+    unlink($img_path);
     include "Database.php";
     include "Models/Management.Model.php";
     include "Controllers/Management.Controller.php";
