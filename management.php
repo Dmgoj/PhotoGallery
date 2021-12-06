@@ -2,8 +2,6 @@
 session_start();
 // Get data from the file upload
 if (isset($_POST['submit'])) {
-    
-
     $image = $_FILES['image'];
     $img_name = $_FILES['image']['name'];
     $img_type = $_FILES['image']['type'];
@@ -21,7 +19,6 @@ if (isset($_POST['submit'])) {
     $img_destination = 'uploads/' . $new_img_name;
     move_uploaded_file($img_tmp_name, $img_destination);
 
-
     // Get username which uploaded image
     if (isset($_SESSION['user']) && !empty($_SESSION['user'])) {
     $username = $_SESSION['user'];
@@ -32,10 +29,10 @@ if (isset($_POST['submit'])) {
     include "Models/Management.Model.php";
     include "Controllers/Management.Controller.php";
     $management = new ManagementController($img_destination, $username);
-        
     $management->uploadImagePath();
+    header("Location:/views/management.view.php");
 }
-
+/*
 if (isset($_SESSION['user'])) {
 // Show images
  // Management Controller object
@@ -45,4 +42,15 @@ if (isset($_SESSION['user'])) {
  $images = new ManagementController($img_destination, $username);
  $images->showImage();
  $imagestoshow= $images->showImages();
+}*/
+
+if (isset($_POST['remove'])) {
+    $img_path= $_POST['image_to_delete'];
+    
+    include "Database.php";
+    include "Models/Management.Model.php";
+    include "Controllers/Management.Controller.php";
+    $remove = new ManagementController($img_path,null);
+    $remove->removeImage();
+    header("Location:/views/management.view.php");
 }
