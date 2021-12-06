@@ -32,7 +32,7 @@ class ManagementModel extends Database
     {
         $stmt=$this->connect()->query("DELETE FROM images WHERE image='$img_path'");
         $stmt->execute();
-        header("Location:/views/management.view.php");
+        
     }
 }
 
