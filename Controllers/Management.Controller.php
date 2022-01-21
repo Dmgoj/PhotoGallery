@@ -29,6 +29,12 @@ class ManagementController extends ManagementModel
     public function removeImage()
     {
         $this->deleteImage($this->img_path);
-        
+    }
+
+    public function imageCount()
+    {
+        return $this->countImage();
+      
+       
     }
 }

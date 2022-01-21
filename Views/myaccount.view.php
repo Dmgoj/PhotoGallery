@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,8 +15,8 @@
         <input type="password" name="new_password" placeholder="Enter new password"><br>
         Repeat new Password:<br>
         <input type="password" name="repeat_new_password" placeholder="Repeat new password"><br>
-        <button type="submit" name="submit">ChangePW</button>
+        <button type="submit" name="submit">ChangePW</button><br>
     </form>
-    <a href="#">Delete account</a>
+    <a href="../myaccount.php?delete_account=<?= $_SESSION['user']; ?>">Delete account</a>
 </body>
 </html>

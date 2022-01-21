@@ -4,15 +4,15 @@ class MyAccountModel extends Database
 {
     
     private $username;
+    //private $new_password;
     // Checks if password is correct    
     protected function checkPassword($password)
     {
         
-        $this->username==$_SESSION['user']=[0]['username'];
+        $this->username=$_SESSION['user'];
         $stmt = $this->connect()->prepare('SELECT password FROM users WHERE username = ?;');
         $stmt->execute(array($this->username));
-        var_dump($username);
-        die();
+       
         if($stmt->rowCount() == 0) {
             $stmt = null;
             header("Location:views/myaccount.view.php?error=wrongpassword");
@@ -20,22 +20,28 @@ class MyAccountModel extends Database
         }
 
         $hashed_password = $stmt->fetch();
+        
         $check_password = password_verify($password, $hashed_password['password']);
+
         
         if (!$check_password) {
+         
             $stmt = null;
             header("Location:views/myaccount.view.php?error=wrongpassword1");
             exit();
         }
+        return true;
     }
 
     //Inserts user into database
     protected function setNewPassword($new_password)
     {
-        $stmt=$this->connect()->prepare('INSERT INTO users(username, email, password) VALUES(?, ?, ?);');
-        $hashed_password = password_hash($password, PASSWORD_DEFAULT);
-
-        $stmt->execute(array($username, $email, $hashed_password));
+        $this->username=$_SESSION['user'];
+        $stmt=$this->connect()->prepare('UPDATE users SET password=? WHERE username=?');
+        $hashed_password = password_hash($new_password, PASSWORD_DEFAULT);
+       
+        $stmt->execute(array($hashed_password, $this->username));
+        
         
         $resultCheck;
 
@@ -45,5 +51,13 @@ class MyAccountModel extends Database
             $resultCheck = true;
         }
         return $resultCheck;
+    }
+
+    protected function removeAccount($username)
+    {
+        
+        $stmt=$this->connect()->prepare('DELETE FROM users WHERE username=?;');
+        $stmt->execute(array($username));
+        
     }
 }

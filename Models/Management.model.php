@@ -32,6 +32,14 @@ class ManagementModel extends Database
     {
         $stmt=$this->connect()->query("DELETE FROM images WHERE image='$img_path'");
         $stmt->execute();
+    }
+
+    protected function countImage()
+    {
+        $stmt=$this->connect()->query("SELECT * FROM images");
+        $stmt->execute();
+        
+        return $stmt->rowCount();
         
     }
 }

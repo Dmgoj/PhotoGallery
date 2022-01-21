@@ -36,14 +36,17 @@ $users_and_images= $images->showUsers();
         <input type="submit" name="submit" value="Upload">
     </form>
     <table>
+    <tr>
         <?php 
+        
         foreach ($users_and_images as $img) {
               
-               echo "<tr><td> <img src='../" . $img['image'] . "' alt='PICTURE' width='100' height='100'><br>" . $img['username']; ?> 
+               echo "<td> <img src='../" . $img['image'] . "' alt='PICTURE' width='100' height='100'><br>" . $img['username']; ?> 
                <?php if ($_SESSION['user']==$img['username']){ echo"<form action='../management.php' method='post'>
                 <input type='hidden' name='image_to_delete' value='" . $img['image'] . "'><button name='remove'>REMOVE</button></form>";} ?> 
-               <?php "</td></tr>";
+               <?php "</td>";
         }?>
+        </tr>
     </table>
 </body>
 </html>

@@ -54,3 +54,15 @@ if (isset($_POST['remove'])) {
     $remove->removeImage();
     header("Location:/views/management.view.php");
 }
+
+if (isset($_POST['show_images_count'])) {
+    include "Database.php";
+    include "Models/Management.Model.php";
+    include "Controllers/Management.Controller.php";
+    $show_image_count = new ManagementController(null,null);
+    $show_image_count->imageCount();
+ 
+    
+    
+    header("Location:/views/home.view.php?imagecount=" . $show_image_count->imageCount() );
+}
