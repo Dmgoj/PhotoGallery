@@ -1,4 +1,8 @@
-<?php session_start(); ?>
+<?php session_start();
+if (empty($_SESSION)) {
+    header("Location:/views/login.view.php");
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>

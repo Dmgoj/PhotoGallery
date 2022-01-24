@@ -37,7 +37,7 @@ class MyAccountModel extends Database
     protected function setNewPassword($new_password)
     {
         $this->username=$_SESSION['user'];
-        $stmt=$this->connect()->prepare('UPDATE users SET password=? WHERE username=?');
+        $stmt = $this->connect()->prepare('UPDATE users SET password=? WHERE username=?');
         $hashed_password = password_hash($new_password, PASSWORD_DEFAULT);
        
         $stmt->execute(array($hashed_password, $this->username));
@@ -55,9 +55,12 @@ class MyAccountModel extends Database
 
     protected function removeAccount($username)
     {
-        
-        $stmt=$this->connect()->prepare('DELETE FROM users WHERE username=?;');
+        //var_dump($username);
+        //die();
+        //$stmt=$this->connect()->prepare("DELETE FROM users,images WHERE users.username=? and images.user_id= (SELECT id FROM users WHERE username=?);");
+        $stmt=$this->connect()->prepare("DELETE FROM users WHERE username=?;");
         $stmt->execute(array($username));
+        
         
     }
 }
