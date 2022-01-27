@@ -4,8 +4,7 @@ class MyAccountModel extends Database
 {
     
     private $username;
-    //private $new_password;
-    // Checks if password is correct    
+    
     protected function checkPassword($password)
     {
         
@@ -22,7 +21,7 @@ class MyAccountModel extends Database
         $hashed_password = $stmt->fetch();
         
         $check_password = password_verify($password, $hashed_password['password']);
-
+       
         
         if (!$check_password) {
          
@@ -33,7 +32,6 @@ class MyAccountModel extends Database
         return true;
     }
 
-    //Inserts user into database
     protected function setNewPassword($new_password)
     {
         $this->username=$_SESSION['user'];

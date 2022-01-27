@@ -18,87 +18,61 @@ class RegisterController extends RegisterModel
     // Check if registration fields are empty
     private function emptyInput()
     {
-        $result;
-        if (empty($this->username) || empty($this->email) || empty($this->password) || empty($this->confirm_password)) {
-            $result = false;
-        } else {
-            $result = true;
-        }
-        return $result;
+    
+        return empty($this->username) || empty($this->email) || empty($this->password) || empty($this->confirm_password);
     }
 
     // Checks if username is alpha-numeric with underscore and atleast 5 and less than 30 characters
     private function invalidUsername()
     {
-        $result;
-        if (!preg_match("/^[a-z\d_]{5,30}$/i", $this->username)) {
-            $result = false;
-        } else {
-            $result = true;
-        }
-        return $result;
+    
+        return preg_match("/^[a-z\d_]{5,30}$/i", $this->username);
     }
 
     // Check if email is valid
     private function invalidEmail()
     {
-        $result;
-        if(!filter_var($this->email, FILTER_VALIDATE_EMAIL)) {
-            $result = false;
-        } else {
-            $result = true;
-        }
-        return $result;
+    
+        return filter_var($this->email, FILTER_VALIDATE_EMAIL);
     }
 
     // Check if password and confirm password match
     private function passwordMatch()
     {
-        $result;
-        if ($this->password !==  $this->confirm_password) {
-            $result = false;
-        } else {
-            $result = true;
-        }
-        return $result;
+        
+        return $this->password !==  $this->confirm_password;
     }
 
     // Check if user exist
     private function userExist()
     {
-        $result;
-        if (!$this->checkUser($this->username,$this->email)) {
-            $result = false;
-        } else {
-            $result = true;
-        }
-        return $result;
+        return $this->checkUser($this->username,$this->email);
     }
 
         // Register user
         public function registerUser()
         {
-            if ($this->emptyInput() == false) {
+            if ($this->emptyInput()) {
                 header("Location:views/register.view.php?error = emptyinput");
                 exit();    
             }
             
-            if ($this->invalidUsername() == false) {
+            if (!$this->invalidUsername()) {
                 header("Location:views/register.view.php?error = invalidusername");
                 exit();    
                 }
             
-            if ($this->invalidEmail() == false) {
+            if (!$this->invalidEmail()) {
                 header("Location:views/register.view.php?error = invalidemail");
                 exit();    
             }
             
-            if ($this->passwordMatch() == false) {
+            if ($this->passwordMatch()) {
                 header("Location:views/register.view.php?error = passwordnotmatch");
                 exit();    
             }
     
-            if ($this->userExist() == false) {
+            if (!$this->userExist()) {
                 header("Location:views/register.view.php?error = useroremailexist");
                 exit();    
             } 

@@ -25,7 +25,7 @@ class MyAccountController extends MyAccountModel
                 
     }
 
-    // Checks if username is alpha-numeric with underscore and atleast 5 and less than 30 characters
+    // Checks if password is correct
     private function invalidPassword()
     {
         return $this->checkPassword($this->password);
@@ -38,6 +38,7 @@ class MyAccountController extends MyAccountModel
       return $this->new_password !== $this->repeat_new_password;
     }
 
+    // Check if new password is same as old password
     private function newPasswordMatchOld()
     {
         return $this->new_password == $this->password;
@@ -45,7 +46,7 @@ class MyAccountController extends MyAccountModel
 
   
 
-        // Register user
+        // Change password if it passes all checks
         public function changePassword()
         {
             if ($this->emptyInput()) {
@@ -72,6 +73,7 @@ class MyAccountController extends MyAccountModel
             $this->setNewPassword($this->new_password);
         }
 
+        // Delete users account with every image he uploaded
         public function deleteAccount()
         {
             $this->removeAccount($this->username);

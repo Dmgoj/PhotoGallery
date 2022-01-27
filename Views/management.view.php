@@ -32,8 +32,8 @@ $users_and_images= $images->showUsers();
     </nav>
     <form action="../management.php" method="post" enctype="multipart/form-data">
         <input type="file" id="image" name="image">
-        <!-- <input type="hidden" name="MAX_FILE_SIZE" value="100000000" /-->
         <input type="submit" name="submit" value="Upload">
+        <hr>
     </form>
     <table>
     <tr>
@@ -42,7 +42,7 @@ $users_and_images= $images->showUsers();
         foreach ($users_and_images as $img) {
               
                echo "<td> <img src='../" . $img['image'] . "' alt='PICTURE' width='100' height='100'><br>" . $img['username']; ?> 
-               <?php if ($_SESSION['user']==$img['username']){ echo"<form action='../management.php' method='post'>
+               <?php if ($_SESSION['user'] == $img['username']){ echo"<form action='../management.php' method='post'>
                 <input type='hidden' name='image_to_delete' value='" . $img['image'] . "'><button name='remove'>REMOVE</button></form>";} ?> 
                <?php "</td>";
         }?>

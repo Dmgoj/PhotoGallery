@@ -10,10 +10,11 @@ class LoginController extends LoginModel
         $this->username=trim($username);
         $this->password=trim($password);
     }
-
+    
+    // User login
     public function loginUser()
     {
-        if ($this->emptyInput() == false) {
+        if ($this->emptyInput()) {
             header("Location:views/login.view.php?error=emptyinput");
             exit();
         }
@@ -23,13 +24,7 @@ class LoginController extends LoginModel
     // Check if registration fields are empty
     private function emptyInput()
     {
-        $result;
-        if (empty($this->username) || empty($this->password)) {
-            $result=false;
-        } else {
-            $result=true;
-        }
-        return $result;
+      return  empty($this->username) || empty($this->password);
     }
     
     // Check if "Remember me" checkbox is checked and set cookies 

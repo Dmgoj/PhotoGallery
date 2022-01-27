@@ -10,7 +10,7 @@ class LoginModel extends Database
         
         if($stmt->rowCount() == 0) {
             $stmt = null;
-            header("Location:views/login.view.php?error =usernotfound");
+            header("Location:views/login.view.php?error=usernotfound");
             exit();
         }
 
@@ -19,7 +19,7 @@ class LoginModel extends Database
         
         if (!$check_password) {
             $stmt = null;
-            header("Location:views/login.view.php?error = $hashed_password");
+            header("Location:views/login.view.php?error=wrongpassword");
             exit();
         } else {
             $stmt = $this->connect()->prepare('SELECT * FROM users WHERE username = ?  AND password = ?;');
@@ -27,7 +27,7 @@ class LoginModel extends Database
         
         if($stmt->rowCount() == 0) {
             $stmt =null;
-            header("Location:views.login.php?error =usernotfound");
+            header("Location:views.login.php?error=usernotfound");
             exit();
         }
         $user = $stmt->fetchAll(PDO::FETCH_ASSOC); 

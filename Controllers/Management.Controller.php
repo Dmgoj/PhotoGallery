@@ -31,6 +31,7 @@ class ManagementController extends ManagementModel
         $this->deleteImage($this->img_path);
     }
 
+    // Count total images in database
     public function imageCount()
     {
         return $this->countImage();

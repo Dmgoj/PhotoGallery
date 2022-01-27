@@ -2,7 +2,6 @@
 
 class ManagementModel extends Database
 {
-    public $test=5;
     protected function setImagePath($img_destination,$username)
     {
         $query = $this->connect()->query("SELECT id FROM users WHERE username = '$username'");
