@@ -1,6 +1,7 @@
 # PhotoGallery
 
 PhotoGallery je jednostavna aplikacija za učitavanje i prikaz slika.
+Za pisanje aplikacije korišten je PHP i SQL. 
 
 Na početnom zaslonu se nalaze linkovi "Home", "Login" i "Register" te button "Images"
 Home vraća korisnika na početni zaslon.
