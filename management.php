@@ -16,12 +16,16 @@ if (isset($_POST['submit'])) {
 
     // Create unique name of an image and move it to 'Uploads' folder
     $new_img_name = uniqid() . "." . $file_actual_extension;
-    $img_destination = 'uploads/' . $new_img_name;
-    move_uploaded_file($img_tmp_name, $img_destination);
+    if (in_array($file_actual_extension, $allowed_file_type)) {
+        $img_destination = 'uploads/' . $new_img_name;
+        move_uploaded_file($img_tmp_name, $img_destination);
+    } else {
+        header("Location:/views/management.view.php?error='wrongfiletype'");
+    }
 
     // Get username which uploaded image
     if (isset($_SESSION['user']) && !empty($_SESSION['user'])) {
-    $username = $_SESSION['user'];
+        $username = $_SESSION['user'];
     }
 
     // Management Controller object
@@ -32,18 +36,8 @@ if (isset($_POST['submit'])) {
     $management->uploadImagePath();
     header("Location:/views/management.view.php");
 }
-/*
-if (isset($_SESSION['user'])) {
-// Show images
- // Management Controller object
- include "Database.php";
- include "Models/Management.Model.php";
- include "Controllers/Management.Controller.php";
- $images = new ManagementController($img_destination, $username);
- $images->showImage();
- $imagestoshow= $images->showImages();
-}*/
 
+// Remove image path from database
 if (isset($_POST['remove'])) {
     $img_path= $_POST['image_to_delete'];
     unlink($img_path);
@@ -55,14 +49,12 @@ if (isset($_POST['remove'])) {
     header("Location:/views/management.view.php");
 }
 
+// Count images in database
 if (isset($_POST['show_images_count'])) {
     include "Database.php";
     include "Models/Management.Model.php";
     include "Controllers/Management.Controller.php";
     $show_image_count = new ManagementController(null,null);
     $show_image_count->imageCount();
- 
-    
-    
     header("Location:/views/home.view.php?imagecount=" . $show_image_count->imageCount() );
 }
